@@ -56,7 +56,7 @@ func (m model) Update(message tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.MouseMsg:
 		e := tea.MouseEvent(msg)
 		if e.Type == tea.MouseLeft {
-			m.board[game.Pos{Y: e.X, X: e.Y}] = true
+			m.board[game.Pos{X: e.X, Y: e.Y}] = true
 		}
 	}
 
@@ -67,7 +67,7 @@ func (m model) View() string {
 	str := ""
 	for i := 1; i <= 40; i++ {
 		for j := 1; j <= 80; j++ {
-			if (m.board[game.Pos{X: i, Y: j}]) {
+			if (m.board[game.Pos{X: j, Y: i}]) {
 				str += "X"
 			} else {
 				str += " "
