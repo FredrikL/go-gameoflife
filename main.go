@@ -68,7 +68,7 @@ func (m model) View() string {
 	for i := 1; i <= 40; i++ {
 		for j := 1; j <= 80; j++ {
 			if (m.board[game.Pos{X: j, Y: i}]) {
-				str += "X"
+				str += "•"
 			} else {
 				str += " "
 			}
