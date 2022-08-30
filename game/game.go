@@ -4,12 +4,14 @@ type Pos struct {
 	X, Y int
 }
 
+// returns all 8 surrounding positions for given p
 func getSurround(p Pos) []Pos {
 	return []Pos{{p.X - 1, p.Y - 1}, {p.X, p.Y - 1}, {p.X + 1, p.Y - 1},
 		{p.X - 1, p.Y}, {p.X + 1, p.Y},
 		{p.X - 1, p.Y + 1}, {p.X, p.Y + 1}, {p.X + 1, p.Y + 1}}
 }
 
+// returns all alive cells and their surrounding positions
 func toEvaluate(board map[Pos]bool) []Pos {
 	r := make([]Pos, 0)
 	for k := range board {
@@ -19,6 +21,7 @@ func toEvaluate(board map[Pos]bool) []Pos {
 	return r
 }
 
+// Advance the board, returns the next generation of `board`
 func Advance(board map[Pos]bool) map[Pos]bool {
 	newBoard := make(map[Pos]bool)
 	positions := toEvaluate(board)
@@ -35,6 +38,7 @@ func Advance(board map[Pos]bool) map[Pos]bool {
 	return newBoard
 }
 
+// returns the number of alive neighbours for a given position
 func countNeighbours(p Pos, board map[Pos]bool) int {
 	surround := getSurround(p)
 	sum := 0
